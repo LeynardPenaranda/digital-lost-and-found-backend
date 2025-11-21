@@ -52,6 +52,14 @@ io.on("connection", (socket) => {
     });
   });
 
+  socket.on("lost-item-created", (newReport) => {
+    io.emit("lost-item-created", newReport); // broadcast to everyone
+  });
+
+  socket.on("found-item-created", (newReport) => {
+    io.emit("found-item-created", newReport); // broadcast to everyone
+  });
+
   // This socket logout user from the room
   socket.on("logout", (userId) => {
     socket.leave(userId);
